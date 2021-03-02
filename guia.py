@@ -14,7 +14,7 @@ class MeuGuia:
     def canal(self, channel):
         request = get(f'https://meuguia.tv/programacao/canal/{channel}')
 
-        if request.status_code == 404:
+        if request.status_code != 200:
             return f'Canal {channel} não encontrado'
         
         response = request.text
@@ -28,12 +28,19 @@ class MeuGuia:
         }
 
     def categoria(self, category):
-        response = get(f'https://meuguia.tv/programacao/categoria/{category}').text
+        category = str(category)\
+            .capitalize()
+
+        request = get(f'https://meuguia.tv/programacao/categoria/{category}')
+
+        if request.status_code != 200:
+            return f'Categoria {category} não encontrada'
+        
+        response = request.text
 
         s = Selector(response)
 
         return {'canais': s.css('h2::text').getall()}
-    
 
 
 if __name__ == '__main__':
