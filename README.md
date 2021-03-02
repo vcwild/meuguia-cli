@@ -1,3 +1,5 @@
+![](./.github/meuguia.gif)
+
 # MeuGuia TV CLI
 
 MeuGuia TV é uma interface de linha de comando que permite realizar buscas em tempo real de conteúdo multimídia disponível no site [meuguia.tv](https://meuguia.tv/)
